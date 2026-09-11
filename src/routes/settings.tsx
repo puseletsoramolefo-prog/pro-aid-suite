@@ -77,7 +77,7 @@ function SettingsPage() {
         <CardHeader>
           <CardTitle className="text-base">AI preferences</CardTitle>
           <CardDescription>
-            Applies across the email generator, summariser, planner, research and chat.
+            Applies across the email generator, summariser, planner and planner.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
@@ -125,7 +125,7 @@ function SettingsPage() {
           />
           <Separator />
           <ToggleRow
-            label="Keep chat history in this browser"
+            label="Keep recent drafts in this browser"
             hint="History stays local to this device and is never uploaded."
             checked={history}
             onChange={setHistory}
