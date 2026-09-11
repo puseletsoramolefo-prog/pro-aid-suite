@@ -1,16 +1,14 @@
 import {
-  Bot,
   CalendarClock,
   LayoutDashboard,
   Mail,
   NotebookPen,
-  Search,
   Settings,
   type LucideIcon,
 } from "lucide-react";
 
 export type NavItem = {
-  to: "/" | "/email" | "/meetings" | "/planner" | "/research" | "/chat" | "/settings";
+  to: "/" | "/email" | "/meetings" | "/planner" | "/settings";
   label: string;
   icon: LucideIcon;
   badge?: string;
@@ -23,36 +21,22 @@ export const NAV_ITEMS: NavItem[] = [
     to: "/email",
     label: "Smart Email Generator",
     icon: Mail,
-    badge: "Popular",
-    description: "Turn rough notes into a polished, on-tone email in seconds.",
+    badge: "Email",
+    description: "Create professional workplace emails quickly with AI.",
   },
   {
     to: "/meetings",
     label: "Meeting Notes Summarizer",
     icon: NotebookPen,
-    badge: "Structured",
-    description: "Executive summary, decisions and an action-item table from raw notes.",
+    badge: "Summaries",
+    description: "Turn meeting notes into clear summaries, decisions and action items.",
   },
   {
     to: "/planner",
     label: "AI Task Planner",
     icon: CalendarClock,
-    badge: "Scheduling",
-    description: "Prioritise, sequence and time-box your tasks with realistic breaks.",
-  },
-  {
-    to: "/research",
-    label: "AI Research Assistant",
-    icon: Search,
-    badge: "Verify sources",
-    description: "Balanced overviews, trade-offs and practical next steps on any work topic.",
-  },
-  {
-    to: "/chat",
-    label: "AI Workplace Chat",
-    icon: Bot,
-    badge: "Chat",
-    description: "Ask anything workplace-related and iterate on drafts conversationally.",
+    badge: "Planning",
+    description: "Organise tasks, set priorities and create an efficient work plan.",
   },
   { to: "/settings", label: "Settings", icon: Settings, description: "Profile, model and privacy" },
 ];

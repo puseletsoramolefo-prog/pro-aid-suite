@@ -27,14 +27,16 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Your workday command centre: AI email drafting, meeting summaries, task planning, research and workplace chat in one dashboard.",
+          "Save time, stay organised and work smarter with AI email drafting, meeting summaries and task planning.",
       },
       { property: "og:title", content: "Dashboard — AI Workplace Productivity Assistant" },
       {
         property: "og:description",
         content:
-          "Your workday command centre: AI email drafting, meeting summaries, task planning, research and workplace chat.",
+          "Save time, stay organised and work smarter with AI email drafting, meeting summaries and task planning.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Dashboard,
@@ -69,8 +71,8 @@ function Dashboard() {
 
   return (
     <AppShell
-      title={`${greeting()}! What would you like to accomplish today?`}
-      subtitle="Pick a module below, or jump straight into chat. Everything here works with polished sample data so you can demo it immediately."
+      title="AI Workplace Productivity Assistant"
+      subtitle="Save time, stay organised and work smarter with AI-powered workplace tools."
     >
       <Card>
         <CardHeader className="flex-row items-center justify-between gap-4 space-y-0">
@@ -155,16 +157,13 @@ function Dashboard() {
           </CardHeader>
           <CardContent className="flex flex-col gap-2">
             <Button asChild variant="secondary" className="justify-start">
-              <Link to="/email">Draft an email from notes</Link>
+              <Link to="/email">Write an Email</Link>
             </Button>
             <Button asChild variant="secondary" className="justify-start">
-              <Link to="/meetings">Summarise meeting notes</Link>
+              <Link to="/meetings">Summarize Meeting</Link>
             </Button>
             <Button asChild variant="secondary" className="justify-start">
-              <Link to="/planner">Plan my day</Link>
-            </Button>
-            <Button asChild variant="secondary" className="justify-start">
-              <Link to="/research">Research a topic</Link>
+              <Link to="/planner">Plan My Tasks</Link>
             </Button>
           </CardContent>
         </Card>

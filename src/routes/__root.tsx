@@ -82,14 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Draft emails, summarise meetings, plan tasks and research work topics with an AI workplace assistant.",
+          "Draft emails, summarise meetings, and plan tasks with an AI workplace assistant.",
       },
       { name: "author", content: "Workplace AI" },
       { property: "og:title", content: "AI Workplace Productivity Assistant" },
       {
         property: "og:description",
         content:
-          "Draft emails, summarise meetings, plan tasks and research work topics with an AI workplace assistant.",
+          "Draft emails, summarise meetings, and plan tasks with an AI workplace assistant.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

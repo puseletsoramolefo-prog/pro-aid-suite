@@ -27,7 +27,8 @@ export function ResponsibleAiBanner({ className }: { className?: string }) {
       <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
       <p>
         AI-generated content may contain errors or omissions. Always review and verify AI outputs
-        before using them in decisions, communications or official records.
+        before using them for important workplace decisions. Do not enter confidential, private,
+        financial, password, or sensitive personal information.
       </p>
     </div>
   );
