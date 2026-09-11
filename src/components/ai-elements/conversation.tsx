@@ -147,7 +147,9 @@ export const ConversationScrollButton = ({
       type="button"
       variant="outline"
       {...props}
-    />
+    >
+      <ArrowDownIcon className="size-4" />
+    </Button>
   );
 };
 
