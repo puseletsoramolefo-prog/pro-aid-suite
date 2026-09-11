@@ -1,86 +1,148 @@
-# Workplace Genius
+# AI Workplace Productivity Assistant
 
-Create a modern, responsive SaaS web application called "AI Workplace Productivity Assistant" designed for professionals, administrators, managers, and job seekers.
+A modern, responsive SaaS web application built for professionals, administrators, managers, and job seekers who want to save time, stay organised, and work smarter with AI-powered workplace tools.
 
-Architecture & Layout:
-- Professional SaaS dashboard layout with collapsible left sidebar navigation, top header (search, notifications, user profile, theme/status), and responsive main content area.
-- Works seamlessly across desktop, tablet, and mobile.
-- Clean, accessible design system with modern typography, subtle cards, professional icons (Lucide), loading skeletons, empty states, error handling, and toast notifications.
-- Include a persistent or contextual "Responsible AI" badge and banner ("AI-generated content may contain errors or omissions. Always review and verify AI outputs before using them...").
+Built as a Capaciti project presentation, this app demonstrates three practical AI productivity features in a clean, professional interface that works seamlessly on desktop, tablet, and mobile.
 
-Navigation & Routes:
-1. Dashboard:
-   - "Good morning! What would you like to accomplish today?" personalized header
-   - Metrics/stats: Tasks completed, AI tasks run, Time saved, Active plans
-   - Feature launch cards with badges and descriptions for all 5 AI modules
-   - Quick Actions bar & Recent Activity feed
-   - "Load Sample Demo Data" toggle / quick fill buttons
+## Live Demo
 
-2. Smart Email Generator:
-   - Inputs: Email Purpose, Recipient, Key Points / Notes, Tone selector (Formal, Friendly, Persuasive, Professional), Length selector (Short, Medium, Detailed)
-   - "Load Sample Notes" button for instant demonstration
-   - Generate button with realistic streaming/loading state
-   - Generated editable result container with Subject line, Greeting, Body paragraphs, Closing, and Sign-off
-   - Actions: Copy to Clipboard, Regenerate, Edit in place, Clear
-   - Adheres to the prompt instructions: preserve meaning, no hallucinations, adapted tone
+- **Preview URL:** https://id-preview--fe8456c0-ecfc-4291-be39-49f5c6399436.lovable.app
+- **Published URL:** https://pro-aid-suite.lovable.app
 
-3. Meeting Notes Summarizer:
-   - Inputs: Raw meeting notes text area, template loader (e.g. "Q3 Strategy & Operations Sync" sample notes)
-   - "Summarize Meeting" action
-   - Structured Output:
-     * Executive Summary card
-     * Key Discussion Points (bullet points)
-     * Decisions Made (highlighted badges)
-     * Action Items interactive table (Task | Responsible Person | Deadline | Status)
-     * Follow-up Items & Next Steps
-   - Actions: Export/Copy summary, Edit items, Mark tasks done
+## Features
 
-4. AI Task Planner:
-   - Add/manage tasks with: Task Name, Priority (High/Medium/Low), Deadline, Estimated Duration (mins/hours)
-   - Pre-loaded realistic sample tasks ("Prepare monthly administrative report", "Respond to client emails", "Attend team meeting", "Submit weekly report", "Update employee records")
-   - Plan Scope: Daily Schedule vs. Weekly Plan
-   - "Generate AI Schedule & Plan" action
-   - AI Output breakdown:
-     * Priority ranking & recommended order of execution
-     * Suggested timeline/schedule including realistic break periods
-     * Scheduling conflicts & workload warnings
-     * Productivity recommendations
+### ✉️ Smart Email Generator
 
-5. AI Research Assistant:
-   - Input: Topic or research question with Depth selector (Quick Overview, Detailed Explanation, Key Insights, Recommendations)
-   - Sample prompt chips (e.g., "AI adoption in HR workflows", "Hybrid work policy benchmarks")
-   - AI Output: Executive Overview, Key Insights & Findings, Advantages & Disadvantages, Practical Recommendations, Questions for Further Research
-   - Prominent source verification notice and confidence/disclaimer badge
+Create professional workplace emails quickly with AI.
 
-6. AI Workplace Chat:
-   - Full interactive chat interface with suggested prompt pills ("Draft an apology for delayed deliverable", "Prepare agenda for 1-on-1", "Help summarize this paragraph")
-   - Rich message bubbles, Markdown formatting, Copy response button, Clear conversation, and Chat history sidebar
-   - System prompt adherence: helpful, safe, strictly workplace focused
+- Enter the purpose, recipient, and key points
+- Choose a tone: Formal, Professional, Friendly, or Persuasive
+- Choose a length: Short, Medium, or Detailed
+- Generate a polished email subject and body
+- Edit, copy, regenerate, or clear the form with one click
 
-7. Settings:
-   - User profile info, AI model preferences, tone presets, privacy controls, and clear cache / reset demo data buttons.
+The generator preserves your intended meaning, uses the selected tone and length, and never invents names, dates, facts, promises, or commitments.
 
-Ensure all features have realistic client-side fallback/mock responses with full prompt engineering fidelity so the demo works completely out of the box even before backend/API keys are configured, and integrates Lovable AI Edge Functions when available. Include polished sample data for immediate presentation.
+### 📝 Meeting Notes Summarizer
 
-This project was built with [Lovable](https://lovable.dev).
+Turn raw meeting notes into clear summaries, decisions, and action items.
 
-**Live app**: https://pro-aid-suite.lovable.app
+- Paste meeting notes in a simple text area
+- Generate:
+  - A concise meeting summary
+  - Key discussion points
+  - Decisions made
+  - Action items with task, responsible person, and deadline
+  - Important follow-up items
+- Copy results or clear notes to start again
 
-## Build with Lovable
+If a responsible person or deadline is not provided in the notes, the app displays "Not specified" instead of guessing.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/fe8456c0-ecfc-4291-be39-49f5c6399436).
+### 📋 AI Task Planner
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Organise tasks, set priorities, and create an efficient daily or weekly plan.
 
-## Development
+- Add multiple tasks with name, priority, deadline, and estimated duration
+- Generate an organised plan for the day or week
+- View:
+  - Priority ranking
+  - Recommended task order
+  - Suggested schedule with breaks
+  - Scheduling conflicts
+  - Practical productivity recommendations
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+The planner prioritises urgency and importance, considers estimated duration, identifies conflicts, and never invents deadlines or information you did not provide.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+## Tech Stack
+
+- **Framework:** [TanStack Start](https://tanstack.com/start) — full-stack React framework with SSR/SSG and server functions
+- **Build Tool:** Vite 7
+- **Frontend:** React 19, TypeScript
+- **Styling:** Tailwind CSS v4
+- **UI Components:** shadcn/ui, Radix UI primitives, Lucide icons
+- **Notifications:** Sonner
+- **AI Integration:** Lovable AI Gateway with client-side fallbacks
+- **Routing:** TanStack Router (file-based routing)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm or bun
+
+### Install
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
 npm run dev
 ```
+
+The app will be available at `http://localhost:8080` by default.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Lint and Format
+
+```bash
+npm run lint
+npm run format
+```
+
+## Project Structure
+
+```
+src/
+├── components/          # Shared UI components
+│   ├── AppShell.tsx     # Responsive layout with sidebar, header, and navigation
+│   ├── ResponsibleAi.tsx# Responsible AI badge and banner
+│   └── ai-elements/     # Reusable AI UI primitives
+├── lib/                 # Utilities and business logic
+│   ├── ai.ts            # AI request helpers and fallback handling
+│   ├── ai.functions.ts  # Server functions for AI generation
+│   ├── mock.ts          # Deterministic sample data and client-side fallbacks
+│   ├── nav.ts           # Navigation configuration
+│   └── utils.ts         # General utilities
+├── routes/              # TanStack Start file-based routes
+│   ├── __root.tsx       # Root layout and metadata
+│   ├── index.tsx        # Dashboard
+│   ├── email.tsx        # Smart Email Generator
+│   ├── meetings.tsx     # Meeting Notes Summarizer
+│   ├── planner.tsx      # AI Task Planner
+│   └── settings.tsx     # Settings
+├── styles.css           # Tailwind CSS v4 theme and global styles
+└── start.ts             # TanStack Start app configuration
+```
+
+## Responsible AI
+
+> AI-generated content may contain errors or omissions. Always review and verify AI outputs before using them for important workplace decisions. Do not enter confidential, private, financial, password, or sensitive personal information.
+
+This application is designed to assist, not replace, human judgement. All generated content should be reviewed before it is used in a professional setting.
+
+## Responsive Design
+
+The application is built to work correctly across:
+
+- Desktop
+- Tablet
+- Mobile phone
+
+The layout adapts automatically so that content is not cut off, buttons remain usable, input fields fit the screen, AI results remain readable, and navigation works smoothly on smaller screens.
+
+## Author
+
+Built by Puseletso Ramolefo as part of a Capaciti project presentation.
+
+## License
+
+This project was built with [Lovable](https://lovable.dev). The source code is provided for demonstration and educational purposes.
