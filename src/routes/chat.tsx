@@ -233,7 +233,7 @@ function ChatPage() {
                 >
                   <Trash2 className="size-4" /> Clear conversation
                 </Button>
-                <PromptInputSubmit status={busy ? "submitted" : undefined} disabled={busy} />
+                <PromptInputSubmit {...(busy ? { status: "submitted" as const } : {})} disabled={busy} />
               </PromptInputFooter>
             </PromptInput>
 
