@@ -5,34 +5,86 @@ import { cn } from "@/lib/utils";
 import type { UIMessage } from "ai";
 import { ArrowDownIcon, DownloadIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { useCallback } from "react";
-import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-export type ConversationProps = ComponentProps<typeof StickToBottom>;
+type ConversationCtx = {
+  scrollRef: React.RefObject<HTMLDivElement | null>;
+  isAtBottom: boolean;
+  setIsAtBottom: (v: boolean) => void;
+};
 
-export const Conversation = ({ className, ...props }: ConversationProps) => (
-  <StickToBottom
-    className={cn("relative flex-1 overflow-y-hidden", className)}
-    initial="smooth"
-    resize="smooth"
-    role="log"
-    {...props}
-  />
-);
+const ConversationContext = createContext<ConversationCtx | null>(null);
 
-export type ConversationContentProps = ComponentProps<
-  typeof StickToBottom.Content
->;
+export type ConversationProps = ComponentProps<"div">;
+
+export const Conversation = ({
+  className,
+  children,
+  ...props
+}: ConversationProps) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [isAtBottom, setIsAtBottom] = useState(true);
+
+  return (
+    <ConversationContext.Provider
+      value={{ scrollRef, isAtBottom, setIsAtBottom }}
+    >
+      <div
+        className={cn("relative flex min-h-0 flex-1 flex-col", className)}
+        role="log"
+        {...props}
+      >
+        {children}
+      </div>
+    </ConversationContext.Provider>
+  );
+};
+
+export type ConversationContentProps = ComponentProps<"div">;
 
 export const ConversationContent = ({
   className,
+  children,
   ...props
-}: ConversationContentProps) => (
-  <StickToBottom.Content
-    className={cn("flex flex-col gap-8 p-4", className)}
-    {...props}
-  />
-);
+}: ConversationContentProps) => {
+  const ctx = useContext(ConversationContext);
+  const localRef = useRef<HTMLDivElement | null>(null);
+  const ref = ctx?.scrollRef ?? localRef;
+
+  const handleScroll = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const atBottom =
+      el.scrollHeight - el.scrollTop - el.clientHeight < 48;
+    ctx?.setIsAtBottom(atBottom);
+  }, [ctx, ref]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (ctx?.isAtBottom !== false) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
+
+  return (
+    <div
+      ref={ref}
+      onScroll={handleScroll}
+      className={cn("flex flex-col gap-8 overflow-y-auto p-4", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 
 export type ConversationEmptyStateProps = ComponentProps<"div"> & {
   title?: string;
@@ -75,28 +127,29 @@ export const ConversationScrollButton = ({
   className,
   ...props
 }: ConversationScrollButtonProps) => {
-  const { isAtBottom, scrollToBottom } = useStickToBottomContext();
+  const ctx = useContext(ConversationContext);
 
   const handleScrollToBottom = useCallback(() => {
-    scrollToBottom();
-  }, [scrollToBottom]);
+    const el = ctx?.scrollRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+  }, [ctx]);
+
+  if (!ctx || ctx.isAtBottom) return null;
 
   return (
-    !isAtBottom && (
-      <Button
-        className={cn(
-          "absolute bottom-4 left-[50%] translate-x-[-50%] rounded-full dark:bg-background dark:hover:bg-muted",
-          className
-        )}
-        onClick={handleScrollToBottom}
-        size="icon"
-        type="button"
-        variant="outline"
-        {...props}
-      >
-        <ArrowDownIcon className="size-4" />
-      </Button>
-    )
+    <Button
+      className={cn(
+        "absolute bottom-4 left-[50%] translate-x-[-50%] rounded-full",
+        className
+      )}
+      onClick={handleScrollToBottom}
+      size="icon"
+      type="button"
+      variant="outline"
+      {...props}
+    >
+      <ArrowDownIcon className="size-4" />
+    </Button>
   );
 };
 
@@ -152,10 +205,7 @@ export const ConversationDownload = ({
 
   return (
     <Button
-      className={cn(
-        "absolute top-4 right-4 rounded-full dark:bg-background dark:hover:bg-muted",
-        className
-      )}
+      className={cn("absolute top-4 right-4 rounded-full", className)}
       onClick={handleDownload}
       size="icon"
       type="button"
