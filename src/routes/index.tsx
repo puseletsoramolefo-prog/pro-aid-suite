@@ -27,14 +27,16 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Your workday command centre: AI email drafting, meeting summaries, task planning, research and workplace chat in one dashboard.",
+          "Save time, stay organised and work smarter with AI email drafting, meeting summaries and task planning.",
       },
       { property: "og:title", content: "Dashboard — AI Workplace Productivity Assistant" },
       {
         property: "og:description",
         content:
-          "Your workday command centre: AI email drafting, meeting summaries, task planning, research and workplace chat.",
+          "Save time, stay organised and work smarter with AI email drafting, meeting summaries and task planning.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Dashboard,
